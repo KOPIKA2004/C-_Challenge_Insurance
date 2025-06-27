@@ -1,7 +1,9 @@
 ﻿using Insurance.Entity;
 using Insurance.MyExceptions;
+using Insurance.Util;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,6 +58,18 @@ namespace Insurance.DAO
             }
             con.Policies.Remove(existing);
             return con.SaveChanges() > 0;
-        }      
+        } 
+        // using ado.net
+        public int GetPolicyCountAdoNet()
+        {
+            int count = 0;
+            using (SqlConnection con = DBConnection.GetConnection())
+            {
+                SqlCommand cmd = new SqlCommand("select  count(*) from policies",con);
+                con.Open();
+                count = (int)cmd.ExecuteScalar();
+            }
+            return count;
+        }
     }
 }

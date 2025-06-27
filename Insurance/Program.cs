@@ -22,7 +22,8 @@ namespace Insurance
                 Console.WriteLine("3. View All Policies");
                 Console.WriteLine("4. Update Policy");
                 Console.WriteLine("5. Delete Policy");
-                Console.WriteLine("6. Exit");
+                Console.WriteLine("6. Get the count of total policies: ");
+                Console.WriteLine("7. Exit");
                 Console.WriteLine("Enter your choice: ");
                 var input = Console.ReadLine();
                 if (!int.TryParse(input, out var value))
@@ -126,7 +127,12 @@ namespace Insurance
                         }
                         break;
                     case "6":
+                        int total = service.GetPolicyCountAdoNet();
+                        Console.WriteLine($"total policies:{total} ");
+                        break;
+                    case "7":
                         Console.WriteLine("Thank you for using Insurance page");
+                        Environment.Exit(0);
                         break;
                 }
             }

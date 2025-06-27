@@ -18,9 +18,9 @@ namespace Insurance.Util
             {
                 if (connection == null || connection.State == System.Data.ConnectionState.Closed)
                 {
-                    string connectionString = PropertyUtil.GetPropertyString("db.properties");
-                    connection = new SqlConnection(connectionString);
-                }
+                string connectionString = @"Data Source=KOPIKA\SQLEXPRESS03;Initial Catalog=InsuranceDB;Integrated Security=True";
+                return new SqlConnection(connectionString);
+            }
 
                 return connection;
             }
